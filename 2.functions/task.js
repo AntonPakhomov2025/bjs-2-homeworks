@@ -2,7 +2,7 @@ function getArrayParams(...arr) {
   let min = Infinity;
   let max = -Infinity;
   let avg = 0;
-  for (i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (arr[i] > max) {
       max = arr[i];
     }
@@ -11,13 +11,12 @@ function getArrayParams(...arr) {
     }
     avg = avg + arr[i];
   }
-  avg = avg / arr.length;
-  return { min: min, max: max, avg: Number(avg.toFixed(2)) };
+  return { min: min, max: max, avg: Number((avg / arr.length).toFixed(2)) };
 }
 
 function summElementsWorker(...arr) {
   let summ = 0;
-  for (i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     summ = summ + arr[i];
   }
   return summ;
@@ -26,46 +25,41 @@ function summElementsWorker(...arr) {
 function differenceMaxMinWorker(...arr) {
   let max = 0;
   let min = 0;
-  let diff = 0;
-  if (arr.length != 0) {
-    max = Math.max(...arr);
-    min = Math.min(...arr);
+  if (arr.length === 0) {
+    return 0;
   }
-  diff = max - min;
+  max = Math.max(...arr);
+  min = Math.min(...arr);
+  let diff = max - min;
   return diff;
 }
 
 function differenceEvenOddWorker(...arr) {
   let sumEvenElement = 0;
   let sumOddElement = 0;
-  let difference = 0;
-  for (i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (arr[i] % 2 == 0) {
       sumEvenElement = sumEvenElement + arr[i];
     } else {
       sumOddElement = sumOddElement + arr[i];
     }
   }
-  difference = sumEvenElement - sumOddElement;
-  return difference;
+  return sumEvenElement - sumOddElement;
 }
 
 function averageEvenElementsWorker(...arr) {
   let sumEvenElement = 0;
-  let avg = 0;
   let count = 0;
-  if (arr.length != 0) {
-    for (i = 0; i < arr.length; i++) {
-      if (arr[i] % 2 == 0) {
-        sumEvenElement = sumEvenElement + arr[i];
-        count++;
-      }
-    }
-    avg = sumEvenElement / count;
-  } else {
-    avg = 0;
+  if (arr.length === 0) {
+    return 0;
   }
-  return avg;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % 2 == 0) {
+      sumEvenElement = sumEvenElement + arr[i];
+      count++;
+    }
+  }
+  return sumEvenElement / count;
 }
 
 function makeWork(arrOfArr, func) {
